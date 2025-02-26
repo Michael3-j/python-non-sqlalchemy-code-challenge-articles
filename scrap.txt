@@ -38,3 +38,134 @@ class Magazine:
 
     def contributing_authors(self):
         pass
+
+
+
+
+        self.magazine.author.append(self.author)
+        self.magazine.article.append(self)
+
+        self.author.magazine.append(self.magazine)
+        self.author.article.append(self)
+
+
+       # p_topic =[]
+
+        # for article in article.all:
+        #     if article._magazine == self and article._title == self:
+        #         if article._magazine not in p_articles:
+        #             p_articles.append(article._magazine)
+        #return p_articles
+
+
+
+
+
+
+
+
+
+
+
+
+        class Article:
+    all =[]
+    def __init__(self, author, magazine, title):
+        self.author = author
+        self.magazine = magazine
+        self.title = title
+        Article.all.append(self)
+
+    @property
+    def title(self):
+        return self._title
+    
+    @title.setter
+    def title(self,title):
+        if hasattr(self,"_title"):
+            raise Exception("can not change the name of the title")
+        elif isinstance(title,str) and 5< len(title) <50:
+            self._title = title
+        else:
+            raise Exception (f"The {title} must be a string with  characters betwwen 5 and 50")
+        
+        
+     
+class Author:
+    def __init__(self, name):
+        
+        self.name = name
+        self._magazine = []
+        self._title = []
+    
+    @property
+    def name(self):
+        return self._name
+    
+    @name.setter
+    def name(self,name):
+        if hasattr(self,"_name"):
+            raise Exception("Can not change name of the Author")
+        elif isinstance(name,str) and len(name)>0:
+            self._name = name
+        else:
+            raise Exception("The name must be a string with more than 0 characters")
+
+    
+
+    def articles(self):
+        return [article for article in Article.all if article.author is self]
+        
+
+    def magazines(self):
+        pass
+
+    def add_article(self, magazine, title):
+        return Article(self, magazine, title)
+
+    def topic_areas(self):
+        pass
+
+class Magazine:
+    def __init__(self, name, category):
+        
+        self.name = name
+        self.category = category
+        self._author = []
+        self._article = []
+
+    @property
+    def name(self):
+        return self._name
+    
+    @name.setter
+    def name(self,name):
+        if isinstance(name,str) and 2< len(name) < 16:
+            self._name = name
+        else:
+            raise Exception ("magazin is initialized with a name of type string")
+        
+    @property
+    def category(self):
+        return self._category
+    
+    @category.setter
+    def category(self,category):
+        if isinstance(category,str) and len(category) >0:
+            self._category =category
+
+        else:
+            raise Exception ("category is of type string")
+
+
+    def articles(self):
+        pass
+
+    def contributors(self):
+        pass
+
+    def article_titles(self):
+        pass
+
+    def contributing_authors(self):
+        pass
